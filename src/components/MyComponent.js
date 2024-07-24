@@ -1,9 +1,13 @@
 import React from "react";
-
+import UserInfo from "./UserInfo";
 class MyComponent extends React.Component {
   //JSX
   render() {
-    return <div>My First Component</div>;
+    return (
+      <div>
+        <UserInfo />
+      </div>
+    );
   }
 }
 
