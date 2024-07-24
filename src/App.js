@@ -11,20 +11,26 @@ class App extends React.Component {
     address: "An Giang",
   };
 
-  constructor(props) {
-    super(props);
-    this.hadleOnMouseOver = this.hadleOnMouseOver.bind(this);
-  }
+  handleOnChange = (event) => {
+    this.setState({
+      name: event.target.value,
+    });
+    return event.target.value;
+  };
 
-  hadleOnMouseOver() {
-    console.log("State: ", this.state.name);
-  }
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  };
 
   render() {
     return (
       <div>
         My name is {this.state.name}
-        <button onMouseOver={this.hadleOnMouseOver}>Click me!</button>
+        <form onSubmit={(event) => this.handleOnSubmit(event)}>
+          <input type="text" onBlur={(event) => this.handleOnChange(event)} />
+          <button>Submit</button>
+        </form>
       </div>
     );
   }
