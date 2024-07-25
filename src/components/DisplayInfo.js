@@ -1,6 +1,5 @@
 import React from "react";
-import UserInfo from "./UserInfo";
-import { click } from "@testing-library/user-event/dist/click";
+import "./DisplayInfo.scss";
 
 class DisplayInfo extends React.Component {
   state = {
@@ -28,7 +27,7 @@ class DisplayInfo extends React.Component {
         </h5>
         {this.state.isShowListUser && (
           <div>
-            {listUser.map((user) => {
+            {listUser.map((user, index) => {
               return (
                 <div
                   key={user.id}
