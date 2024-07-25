@@ -1,5 +1,6 @@
 import React from "react";
 import "./DisplayInfo.scss";
+import logo from "../logo.svg";
 
 class DisplayInfo extends React.Component {
   state = {
@@ -16,6 +17,7 @@ class DisplayInfo extends React.Component {
     const { listUser } = this.props;
     return (
       <div>
+        <img src={logo} />
         <h5
           onClick={() => {
             this.handleOnClick();
