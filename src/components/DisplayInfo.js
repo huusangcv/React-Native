@@ -37,6 +37,13 @@ class DisplayInfo extends React.Component {
                   <h1> My name is {user.name}</h1>
                   <h3> and my age is {user.age}</h3>
                   <hr />
+                  <button
+                    onClick={() => {
+                      this.props.handleDeleteUser(user.id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </div>
               );
             })}

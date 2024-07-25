@@ -41,6 +41,7 @@ class AddUserInfo extends React.Component {
             onChange={(event) => this.handleOnChange(event)}
             value={this.state.name}
           />
+          <br />
           <label>AGe</label>
           <input
             type="text"
