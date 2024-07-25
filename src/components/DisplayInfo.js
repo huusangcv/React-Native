@@ -17,7 +17,6 @@ class DisplayInfo extends React.Component {
     const { listUser } = this.props;
     return (
       <div>
-        <img src={logo} />
         <h5
           onClick={() => {
             this.handleOnClick();
@@ -28,7 +27,7 @@ class DisplayInfo extends React.Component {
             "Show User List"}
         </h5>
         {this.state.isShowListUser && (
-          <div>
+          <>
             {listUser.map((user, index) => {
               return (
                 <div
@@ -41,7 +40,7 @@ class DisplayInfo extends React.Component {
                 </div>
               );
             })}
-          </div>
+          </>
         )}
       </div>
     );
