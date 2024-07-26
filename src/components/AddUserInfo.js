@@ -4,6 +4,7 @@ class AddUserInfo extends React.Component {
   state = {
     name: "Hữu Sang",
     address: "An Giang",
+    age: 21
   };
 
   handleOnChange = (event) => {

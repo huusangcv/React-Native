@@ -3,9 +3,32 @@ import "./DisplayInfo.scss";
 import logo from "../logo.svg";
 
 class DisplayInfo extends React.Component {
-  state = {
-    isShowListUser: true,
-  };
+  constructor(props) {
+    console.log('checkk constructor: 1');
+    super(props)
+    this.state = {
+      isShowListUser: true,
+    };
+  }
+
+  componentDidMount() {
+    console.log(">>> componentDidMout")
+    setTimeout(() => {
+      document.title ='title';
+    }, 3000)
+  }
+
+  componentDidUpdate(prevProp) {
+    console.log('>>> component Did Update, prevProp', prevProp)
+    console.log('>>> component Did Update, thisPro', this.props)
+
+    if(prevProp.listUser !== this.props.listUser) {
+      if(this.props.listUser.length === 5) {
+        alert('You got 5 users')
+      }
+    }
+  }
+
   //DomEvent
   handleOnClick = () => {
     this.setState({
@@ -14,6 +37,7 @@ class DisplayInfo extends React.Component {
   };
 
   render() {
+    console.log('>>> render')
     const { listUser } = this.props;
     return (
       <div>
@@ -28,7 +52,7 @@ class DisplayInfo extends React.Component {
         </h5>
         {this.state.isShowListUser && (
           <>
-            {listUser.map((user, index) => {
+            {listUser.map((user) => {
               return (
                 <div
                   key={user.id}
