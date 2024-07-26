@@ -1,18 +1,20 @@
 import logo from "./logo.svg";
 import "./App.scss";
+import "./lib/valid-form.css";
+import "./lib/valid-form.js";
 import { useDispatch, useSelector } from "react-redux";
 import { increaseCounter, decreaseCounter } from "./redux/action/counterAction";
 import MyComponent from "./components/MyComponent.js";
 import React from "react";
 
 class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <MyComponent></MyComponent>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="main">
+                <MyComponent></MyComponent>
+            </div>
+        );
+    }
 }
 
 export default App;

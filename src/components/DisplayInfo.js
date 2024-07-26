@@ -41,15 +41,21 @@ const DisplayInfo = (props) => {
   const { listUser } = props
   const [isShowListUser, setIsShowListUser] = useState(true)
 
-  const ShowHideElement = document.querySelector('#ShowHideUser')
-  ShowHideElement.onclick = () => {
+  
+  // const ShowHideElement = document.querySelector('#ShowHideUser')
+  // console.log(ShowHideElement)
+  // ShowHideElement.onclick = () => {
+  //   console.log('hi')
+  // }
+
+  const handleShowHideListUser = () => {
     setIsShowListUser(!isShowListUser)
-    return isShowListUser
   }
 
   return (
-      <div>
-        <div><span id="ShowHideUser">{isShowListUser && 'Hide List User' || 'Show List User'}</span></div>
+      <div className="container">
+        {/* <div><span id="ShowHideUser">{isShowListUser && 'Hide List User' || 'Show List User'}</span></div> */}
+        <div><span id="ShowHideUser" onClick={() => handleShowHideListUser()}> { isShowListUser && 'Hide List User' || 'Show List User' } </span></div>
         {isShowListUser && (
           <>
             {listUser.map((user) => {

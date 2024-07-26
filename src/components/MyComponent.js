@@ -1,48 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import AddUserInfo from "./AddUserInfo";
 import DisplayInfo from "./DisplayInfo";
-class MyComponent extends React.Component {
-  state = {
-    listUser: [
-      {
-        id: 1,
-        name: "Hữu Sang",
-        age: 12,
-      },
-      {
-        id: 2,
-        name: "Blues Nam",
-        age: 21,
-      },
-    ],
-  };
 
-  handleAddNewUserInfo = (object) => {
-    this.setState({
-      listUser: [object, ...this.state.listUser],
-    });
-  };
+const MyComponent = () => {
+    const userArray = [
+        {
+            id: 1,
+            name: "Hữu Sang",
+            age: 12,
+        },
+        {
+            id: 2,
+            name: "Blues Nam",
+            age: 21,
+        },
+    ];
+    const [listUser, setListUser] = useState(userArray);
 
-  handleDeleteUser = (userId) => {
-    let listUserClone = [...this.state.listUser];
-    let listUserNew = listUserClone.filter((user) => user.id !== userId);
-    this.setState({
-      listUser: listUserNew,
-    });
-  };
+    //DomEvent
+    const handleAddNewUserInfo = (object) => {
+        setListUser([object, ...listUser]);
+    };
 
-  //JSX
-  render() {
+    const handleDeleteUser = (userId) => {
+        let listUserNew = listUser.filter((user) => user.id !== userId);
+        setListUser(listUserNew);
+    };
+
     return (
-      <div>
-        <AddUserInfo handleAddNewUserInfo={this.handleAddNewUserInfo} />
-        <DisplayInfo
-          listUser={this.state.listUser}
-          handleDeleteUser={this.handleDeleteUser}
-        />
-      </div>
+        <div>
+            <AddUserInfo handleAddNewUserInfo={handleAddNewUserInfo} />
+            <DisplayInfo
+                listUser={listUser}
+                handleDeleteUser={handleDeleteUser}
+            />
+        </div>
     );
-  }
-}
+};
 
 export default MyComponent;
