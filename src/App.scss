@@ -68,3 +68,10 @@ code {
     }
   }
 }
+
+.video-homepage {
+ position: fixed;
+ bottom: -56px;
+ width: 100vw;
+ z-index: -1;
+}
