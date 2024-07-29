@@ -17,9 +17,10 @@ import {
 } from "react-icons/fa";
 import sidebarBg from "../../assets/bg2.jpg";
 import "react-pro-sidebar/dist/css/styles.css";
+import { DiReact } from "react-icons/di";
+import { MdDashboard } from "react-icons/md";
 
 const Sidebar = ({ image, collapsed, rtl, toggled, handleToggleSidebar }) => {
-  console.log(collapsed);
   return (
     <ProSidebar
       image={sidebarBg}
@@ -42,28 +43,25 @@ const Sidebar = ({ image, collapsed, rtl, toggled, handleToggleSidebar }) => {
             whiteSpace: "nowrap",
           }}
         >
-          sidebarTitle
+          <DiReact size={"3em"} color={"00bfff"} />
+          Hey Bae
         </div>
       </SidebarHeader>
 
       <SidebarContent>
         <Menu iconShape="circle">
-          <MenuItem
-            icon={<FaTachometerAlt />}
-            suffix={<span className="badge red">new</span>}
-          >
-            dashboard
-          </MenuItem>
+          <MenuItem icon={<MdDashboard />}>Dashboard</MenuItem>
           <MenuItem icon={<FaGem />}>components</MenuItem>
         </Menu>
         <Menu iconShape="circle">
           <SubMenu
             suffix={<span className="badge yellow">3</span>}
+            title={"Chức năng"}
             icon={<FaRegLaughWink />}
           >
-            <MenuItem> 1</MenuItem>
-            <MenuItem> 2</MenuItem>
-            <MenuItem> 3</MenuItem>
+            <MenuItem>Quản lý Users</MenuItem>
+            <MenuItem> Quản lý bài Quiz</MenuItem>
+            <MenuItem>Quản lý câu hỏi</MenuItem>
           </SubMenu>
         </Menu>
       </SidebarContent>
