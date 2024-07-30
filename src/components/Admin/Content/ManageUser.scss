@@ -1,0 +1,15 @@
+.lable-file-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    background: #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

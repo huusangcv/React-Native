@@ -4,4 +4,8 @@
   "editor.formatOnPaste": false,
   "editor.defaultFormatter": "formulahendry.auto-close-tag",
   "editor.formatOnType": true,
+  "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "emmet.triggerExpansionOnTab": true
 }
