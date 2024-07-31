@@ -38,15 +38,6 @@ const Header = () => {
                     <Nav>
                         <button className="btn-login">Log in</button>
                         <button className="btn-signup">Sign up</button>
-                        {/* <NavDropdown title="Settings" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown> */}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
