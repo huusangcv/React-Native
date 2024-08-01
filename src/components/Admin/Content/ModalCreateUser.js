@@ -2,8 +2,8 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { postCreateUser } from "../../../services/apiServices";
 const ModalCreateUser = ({ show, setShow }) => {
     const handleClose = () => {
         setShow(false);
@@ -49,28 +49,17 @@ const ModalCreateUser = ({ show, setShow }) => {
             return;
         }
 
-        const form = new FormData();
-        form.append("email", email);
-        form.append("password", password);
-        form.append("username", username);
-        form.append("role", role);
-        form.append("userImage", image);
-
-        let res = await axios.post(
-            "http://localhost:8081/api/v1/participant",
-            form
-        );
-        console.log(">>> check res", res.data);
-
-        if (res.data && res.data.EC === 0) {
+        let data = await postCreateUser(email, password, username, role, image);
+        if (data && data.EC === 0) {
             toast.success("Create success new User");
             handleClose();
         }
 
-        if (res.data && res.data.EC !== 0) {
-            toast.error(res.data.EM);
+        if (data && data.EC !== 0) {
+            toast.error(data.EM);
         }
     };
+
     return (
         <>
             <Modal show={show} onHide={handleClose} size="md" backdrop="static">

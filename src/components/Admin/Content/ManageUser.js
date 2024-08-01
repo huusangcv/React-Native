@@ -4,7 +4,6 @@ import { FcPlus } from "react-icons/fc";
 import { useState } from "react";
 const ManageUser = (props) => {
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
-
     return (
         <div className="manage-user-container">
             <div className="title h1 text-center">Manage User</div>
