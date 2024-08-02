@@ -1,17 +1,6 @@
-import { useEffect, useState } from "react";
-import { getAllUsers } from "../../../services/apiServices";
-const TableUser = (pros) => {
-    const [listUser, setListUser] = useState([]);
-    useEffect(() => {
-        fetchListUsers();
-    }, []);
+const TableUser = (props) => {
+    const { listUser } = props;
 
-    const fetchListUsers = async () => {
-        let res = await getAllUsers();
-        if (res.EC === 0) {
-            setListUser(res.DT);
-        }
-    };
     return (
         <>
             <table className="table table-striped table-hover table-bordered">
@@ -38,7 +27,14 @@ const TableUser = (pros) => {
                                         <button className="btn btn-info">
                                             View
                                         </button>
-                                        <button className="btn btn-warning mx-3">
+                                        <button
+                                            className="btn btn-warning mx-3"
+                                            onClick={() =>
+                                                props.handleClickButtonUpdate(
+                                                    user
+                                                )
+                                            }
+                                        >
                                             Update
                                         </button>
                                         <button className="btn btn-danger">
