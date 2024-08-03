@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
-import { postCreateUser } from "../../../services/apiServices";
+import { putUpdateUser } from "../../../services/apiServices";
 import _ from "lodash";
 const ModalUpdateUser = (props) => {
     const { show, setShow, dataUpdate } = props;
@@ -15,6 +15,7 @@ const ModalUpdateUser = (props) => {
         setRole("USER");
         setImage("");
         setPreviewImage("");
+        props.resetUpdateData();
     };
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -44,29 +45,10 @@ const ModalUpdateUser = (props) => {
         }
     };
 
-    const validateEmail = (email) => {
-        return String(email)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
-    };
-
     const handleSubmitCreateUser = async () => {
-        const isValidEmail = validateEmail(email);
-        if (!isValidEmail) {
-            toast.error("Email is not valid");
-            return;
-        }
-
-        if (!password) {
-            toast.error("Password is not valid");
-            return;
-        }
-
-        let data = await postCreateUser(email, password, username, role, image);
+        let data = await putUpdateUser(dataUpdate.id, username, role, image);
         if (data && data.EC === 0) {
-            toast.success("Create success new User");
+            toast.success(data.EM);
             handleClose();
             await props.fetchListUsers();
         }
