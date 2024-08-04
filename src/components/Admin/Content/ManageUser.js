@@ -12,19 +12,20 @@ import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 import TableUserPaginate from "./TableUserPaginate";
 const ManageUser = (props) => {
-    const LIMIT_USER = 6;
+    const LIMIT_USER = 1;
+    const [currentPage, setCurrentPage] = useState(1);
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
-    const [showModal, setShowModal] = useState(false);
     const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
 
+    const [showModal, setShowModal] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
     const [dataDelete, setDataDelete] = useState({});
     const [dataView, setDataView] = useState({});
     const [listUser, setListUser] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     useEffect(() => {
-        fetchListUsersWithPaninate(1);
+        fetchListUsersWithPaninate(currentPage);
     }, []);
 
     const fetchListUsers = async () => {
@@ -86,12 +87,17 @@ const ManageUser = (props) => {
                         handleClickDeleteUser={handleClickDeleteUser}
                         fetchListUsersWithPaninate={fetchListUsersWithPaninate}
                         pageCount={pageCount}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
                     />
                 </div>
                 <ModalCreateUser
                     show={showModalCreateUser}
                     setShow={setShowModalCreateUser}
                     fetchListUsers={fetchListUsers}
+                    fetchListUsersWithPaninate={fetchListUsersWithPaninate}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                 />
                 <ModalUpdateUser
                     show={showModalUpdateUser}
@@ -99,11 +105,17 @@ const ManageUser = (props) => {
                     dataUpdate={dataUpdate}
                     fetchListUsers={fetchListUsers}
                     resetUpdateData={resetUpdateData}
+                    fetchListUsersWithPaninate={fetchListUsersWithPaninate}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                 />
                 <ModalViewUser
                     show={showModal}
                     setShow={setShowModal}
                     dataView={dataView}
+                    fetchListUsersWithPaninate={fetchListUsersWithPaninate}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                 />
 
                 <ModalDeleteUser
@@ -111,6 +123,9 @@ const ManageUser = (props) => {
                     setShow={setShowModalDeleteUser}
                     dataDelete={dataDelete}
                     fetchListUsers={fetchListUsers}
+                    fetchListUsersWithPaninate={fetchListUsersWithPaninate}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                 />
             </div>
         </div>

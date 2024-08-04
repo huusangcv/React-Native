@@ -35,14 +35,6 @@ const ModalViewUser = (props) => {
             }
         }
     }, [dataView]);
-    const handleUploadImage = (e) => {
-        if (e.target && e.target.files && e.target.files[0]) {
-            setPreviewImage(URL.createObjectURL(e.target.files[0]));
-            setImage(e.target.files[0]);
-        } else {
-            setPreviewImage("");
-        }
-    };
 
     return (
         <>
@@ -101,19 +93,8 @@ const ModalViewUser = (props) => {
                                 className="form-label lable-file-upload"
                                 htmlFor="uploadFile"
                             >
-                                <FcPlus />
-                                Upload file Image
+                                Image user
                             </label>
-                            <input
-                                id="uploadFile"
-                                type="file"
-                                className="form-control"
-                                onChange={(e) => {
-                                    handleUploadImage(e);
-                                }}
-                                hidden
-                                disabled
-                            />
                         </div>
 
                         <div className="col-md-12 img-preview">
