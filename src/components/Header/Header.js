@@ -52,8 +52,12 @@ const Header = () => {
                                     title={account.username}
                                     id="basic-nav-dropdown"
                                 >
-                                    <NavDropdown.Item>Logout</NavDropdown.Item>
                                     <NavDropdown.Item>Profile</NavDropdown.Item>
+                                    <NavDropdown.Item
+                                        onClick={() => navigate("/login")}
+                                    >
+                                        Logout
+                                    </NavDropdown.Item>
                                 </NavDropdown>
                             </>
                         )) || (
