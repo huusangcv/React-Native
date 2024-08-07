@@ -2,8 +2,21 @@
     height: 700px;
 
     .bg-light {
-        background: url(../../assets/bg.jpg);
+        background: url(../../assets/bg3.jpg) no-repeat;
     }
 
 
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.show-pass {
+    color: #5ebbff;
+    text-decoration: underline;
+}
+
+.invalid {
+    color: red I !important
 }

@@ -1,20 +1,24 @@
 import { useState } from "react";
 import "./Login.scss";
-import { set } from "lodash";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../services/apiServices";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../redux/action/userAction";
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    // const [loading, setLoading] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogin = async () => {
         //submid apis
-        let data = await postLogin(email, password);
+        let data = await postLogin(email.trim(), password.trim());
         console.log(data);
         if (data && +data.EC === 0) {
+            dispatch(doLogin(data));
             toast.success(data.EM);
             navigate("/");
         }
@@ -63,7 +67,11 @@ const Login = (props) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <form action="#!" autoComplete="off">
+                                    <form
+                                        action="#!"
+                                        autoComplete="off"
+                                        onSubmit={(e) => e.preventDefault()}
+                                    >
                                         <div className="row gy-3 overflow-hidden">
                                             <div className="col-12">
                                                 <div className="form-floating mb-3">
@@ -133,7 +141,7 @@ const Login = (props) => {
                                                 <div className="d-grid">
                                                     <button
                                                         className="btn bsb-btn-xl btn-primary"
-                                                        type="submit"
+                                                        // type="submit"
                                                         onClick={() =>
                                                             handleLogin()
                                                         }
@@ -149,8 +157,11 @@ const Login = (props) => {
                                             <hr className="mt-5 mb-4 border-secondary-subtle"></hr>
                                             <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
                                                 <a
-                                                    href="#!"
+                                                    href=""
                                                     className="link-secondary text-decoration-none"
+                                                    onClick={() =>
+                                                        navigate("/register")
+                                                    }
                                                 >
                                                     Create new account
                                                 </a>
