@@ -1,10 +1,43 @@
 .login-container {
     height: 700px;
 
-    .bg-light {
-        background: url(../../assets/bg3.jpg) no-repeat;
+    .bg-light {}
+
+    .loader-icon {
+        font-size: 18px;
+        margin-right: 7px;
+        top: 2px;
+        animation: spin 1s infinite linear;
     }
 
+    @keyframes spin {
+        from {
+            transform: scale(1) rotate(0deg);
+        }
+
+        to {
+            transform: scale(1) rotate(360deg);
+        }
+    }
+
+
+
+    button {
+        border: 1px solid #0066cc;
+        color: #ffffff;
+        padding: 5px 10px;
+
+        &:hover {
+            border: 1px solid #0099cc;
+            color: #ffffff;
+            padding: 5px 10px;
+        }
+
+        &:disabled,
+        &[disabled] {
+            border: 1px solid #999999;
+        }
+    }
 
 }
 
