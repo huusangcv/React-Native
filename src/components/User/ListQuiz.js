@@ -14,7 +14,6 @@ const ListQuiz = (props) => {
         const res = await getQuizByUser();
         if (res && res.EC === 0) {
             setArrQuiz(res.DT);
-            console.log(res);
         }
     };
 
@@ -46,7 +45,15 @@ const ListQuiz = (props) => {
                                             <button
                                                 className="btn btn-primary"
                                                 onClick={() =>
-                                                    navigate(`/quiz/${quiz.id}`)
+                                                    navigate(
+                                                        `/quiz/${quiz.id}`,
+                                                        {
+                                                            state: {
+                                                                quizTitle:
+                                                                    quiz.description,
+                                                            },
+                                                        }
+                                                    )
                                                 }
                                             >
                                                 Start Now
