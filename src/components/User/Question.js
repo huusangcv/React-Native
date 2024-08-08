@@ -1,19 +1,28 @@
 import _ from "lodash";
 const Question = (props) => {
-    const { dataQuiz, index } = props;
-    console.log("data quiz", dataQuiz);
+    const { dataQuiz, index, handleCheckbox } = props;
+
     if (_.isEmpty(dataQuiz)) {
         return <></>;
     }
+
+    const handleCheckboxChild = (e, aId, qId) => {
+        // console.log(e.target.checked);
+        handleCheckbox(aId, qId);
+    };
+
     return (
         <>
-            {dataQuiz.image && (
-                <div>
+            {(dataQuiz.image && (
+                <div className="q-image">
                     <img
                         src={`data:image/jpeg;base64,${dataQuiz.image}`}
                         alt=""
-                        className="q-image"
                     />
+                </div>
+            )) || (
+                <div className="q-image">
+                    <img src="" alt="" />
                 </div>
             )}
             <div className="question">
@@ -25,16 +34,23 @@ const Question = (props) => {
                     dataQuiz.answers.map((a, index) => {
                         return (
                             <div key={`answer-${index}`} className="a-child">
-                                <div class="form-check">
+                                <div className="form-check">
                                     <input
                                         className="form-check-input"
                                         type="checkbox"
-                                        value=""
+                                        checked={a.isSelected}
                                         id={`flexCheckDefault-${index}`}
+                                        onChange={(e) =>
+                                            handleCheckboxChild(
+                                                e,
+                                                a.id,
+                                                dataQuiz.questionId
+                                            )
+                                        }
                                     />
                                     <label
                                         className="form-check-label"
-                                        for={`flexCheckDefault-${index}`}
+                                        htmlFor={`flexCheckDefault-${index}`}
                                     >
                                         {a.description}
                                     </label>
