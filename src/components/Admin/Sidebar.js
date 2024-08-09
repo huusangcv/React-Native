@@ -19,9 +19,10 @@ import sidebarBg from "../../assets/bg2.jpg";
 import "react-pro-sidebar/dist/css/styles.css";
 import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ image, collapsed, rtl, toggled, handleToggleSidebar }) => {
+    const navigate = useNavigate();
     return (
         <ProSidebar
             image={sidebarBg}
@@ -31,7 +32,10 @@ const Sidebar = ({ image, collapsed, rtl, toggled, handleToggleSidebar }) => {
             breakPoint="md"
             onToggle={handleToggleSidebar}
         >
-            <SidebarHeader>
+            <SidebarHeader
+                onClick={() => navigate("/")}
+                style={{ cursor: "pointer" }}
+            >
                 <div
                     style={{
                         padding: "24px",
@@ -45,7 +49,7 @@ const Sidebar = ({ image, collapsed, rtl, toggled, handleToggleSidebar }) => {
                     }}
                 >
                     <DiReact size={"3em"} color={"00bfff"} />
-                    Hey Bae
+                    <span>Hey Bae E</span>
                 </div>
             </SidebarHeader>
 
@@ -64,7 +68,10 @@ const Sidebar = ({ image, collapsed, rtl, toggled, handleToggleSidebar }) => {
                             Quản lý Users
                             <Link to="/admins/manage-users" />
                         </MenuItem>
-                        <MenuItem>Quản lý bài Quiz</MenuItem>
+                        <MenuItem>
+                            Quản lý bài Quiz
+                            <Link to="/admins/manage-quizzes" />
+                        </MenuItem>
                         <MenuItem>Quản lý câu hỏi</MenuItem>
                     </SubMenu>
                 </Menu>
