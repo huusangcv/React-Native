@@ -7,7 +7,7 @@ import Question from "./Question";
 const DetailQuiz = (props) => {
     const params = useParams();
     const location = useLocation();
-    const quizID = params.id;
+    const quizID = +params.id;
 
     const [dataQuiz, setDataQuiz] = useState([]);
     const [index, setIndex] = useState(0);
@@ -47,7 +47,6 @@ const DetailQuiz = (props) => {
             setDataQuiz(data);
         }
     };
-    console.log(dataQuiz);
     const handlePrev = () => {
         if (index - 1 < 0) return;
         setIndex(index - 1);
@@ -78,6 +77,34 @@ const DetailQuiz = (props) => {
         if (index > -1) {
             dataQuizClone[index] = question;
             setDataQuiz(dataQuizClone);
+        }
+    };
+
+    const handleFinishQuiz = () => {
+        let payload = {
+            quizID,
+            answers: [],
+        };
+        let answers = [];
+        if (dataQuiz && dataQuiz.length > 0) {
+            dataQuiz.forEach((question) => {
+                let questionId = +question.questionId;
+                let userAnswerId = [];
+
+                question.answers.forEach((a) => {
+                    if (a.isSelected === true) {
+                        userAnswerId.push(a.id);
+                    }
+                });
+
+                //todo: userAnswerId
+                answers.push({
+                    questionId,
+                    userAnswerId,
+                });
+            });
+            payload.answers = answers;
+            console.log("Final payload: ", payload);
         }
     };
     return (
@@ -119,7 +146,7 @@ const DetailQuiz = (props) => {
                             </button>
                             <button
                                 className="btn btn-warning ml-3"
-                                onClick={() => handleNext()}
+                                onClick={() => handleFinishQuiz()}
                             >
                                 Finish
                             </button>
